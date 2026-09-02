@@ -24,9 +24,8 @@ driver.find_element(By.XPATH,"//button[@data-test='accountNav-signIn']").click()
 sleep(7)
 
 # Verification (assertion)
-expected_result = 'login'
 actual_result = driver.find_element(By.ID, "login")
-assert expected_result in actual_result, f'Expected "{expected_result}" not in actual "{actual_result}"'
+assert actual_result.is_displayed(), "Login page is not displayed"
 
 print('Test case PASSED')
 driver.quit()
