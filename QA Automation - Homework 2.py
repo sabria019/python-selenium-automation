@@ -13,17 +13,19 @@ from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
+# Open Chrome Browser
 driver = webdriver.Chrome()
 driver.maximize_window()
+driver.implicitly_wait(5)
 
+# Open Target Website
 driver.get("https://www.target.com")
-sleep(2)
 
 driver.find_element(By.ID, "account-sign-in").click()
 driver.find_element(By.XPATH,"//button[@data-test='accountNav-signIn']").click()
 sleep(7)
 
-# Verification (assertion)
+# Verification (Assertion)
 actual_result = driver.find_element(By.ID, "login")
 assert actual_result.is_displayed(), "Login page is not displayed"
 
