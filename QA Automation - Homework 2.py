@@ -23,11 +23,14 @@ driver.get("https://www.target.com")
 
 driver.find_element(By.ID, "account-sign-in").click()
 driver.find_element(By.XPATH,"//button[@data-test='accountNav-signIn']").click()
-sleep(7)
 
 # Verification (Assertion)
-actual_result = driver.find_element(By.ID, "login")
-assert actual_result.is_displayed(), "Login page is not displayed"
+expected_result = 'Sign in or create account'
+actual_result = driver.find_element(By.XPATH, "//h1[contains(@class, 'styles_ndsHeading')]").text
+assert expected_result == actual_result, f'Expected {expected_result}, did not match {actual_result}'
+
+# Verify Login Button
+driver.find_element(By.ID, "login")
 
 print('Test case PASSED')
 driver.quit()
