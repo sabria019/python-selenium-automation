@@ -6,11 +6,6 @@ CART_EMPTY_MSG = (By.CSS_SELECTOR, "[data-test='boxEmptyMsg']")
 PRODUCT_NAME = (By.CSS_SELECTOR, "[data-test='cartItem-title']")
 TOTAL_TXT = (By.CSS_SELECTOR, "h2 [class*='styles_cart-summary-span']")
 
-@given('Open main target page')
-def open_target_main(context):
-    context.driver.get('https://www.target.com/')
-    sleep(3)
-
 @when ('Click on cart icon')
 def click_cart(context):
     context.driver.find_element(By.CSS_SELECTOR, "a[data-test='@web/CartLink']").click()
