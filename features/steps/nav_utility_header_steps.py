@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
-from time import sleep
 
 SEARCH_FIELD = (By.ID, 'search')
 SEARCH_BTN = (By.CSS_SELECTOR, "[data-test='@web/Search/SearchButton']")
@@ -11,9 +10,10 @@ UTILITY_HEADER_LINKS = (By.CSS_SELECTOR, "a[data-test*='@web/GlobalHeader/utilit
 
 @when('Search for {product}')
 def search_product(context, product):
-    context.driver.find_element(*SEARCH_FIELD).send_keys(product)
-    context.driver.find_element(*SEARCH_BTN).click()
-    sleep(7)
+    # context.driver.find_element(*SEARCH_FIELD).send_keys(product)
+    # context.driver.find_element(*SEARCH_BTN).click()
+    # sleep(7)
+    context.app.header.search_product(product)
 
 @when('Click on cart button')
 def click_cart(context):

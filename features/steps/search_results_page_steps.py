@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
-from time import sleep
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -22,5 +21,6 @@ def confirm_add_to_cart(context):
 
 @then('Verify search results are shown for {expected_product}')
 def verify_search_result_shown(context, expected_product):
-    search_results = context.driver.find_element(*RESULTS_COUNT_TXT).text
-    assert f'{expected_product}' in search_results, f"Expected {expected_product} but got {search_results}"
+    # search_results = context.driver.find_element(*RESULTS_COUNT_TXT).text
+    # assert f'{expected_product}' in search_results, f"Expected {expected_product} but got {search_results}"
+    context.app.search_results_page.verify_search_results_shown()
