@@ -1,6 +1,9 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
 from time import sleep
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 RESULTS_COUNT_TXT = (By.CSS_SELECTOR, "[data-test='lp-resultsCount']")
 ADD_TO_CART_BTN = (By.CSS_SELECTOR, "[id*='addToCartButton']")
@@ -13,8 +16,9 @@ def click_add_to_cart(context):
 
 @when('Confirm Add to Cart button from side navigation')
 def confirm_add_to_cart(context):
-    context.driver.find_element(*SIDE_NAV_ADD_TO_CART_BTN).click()
-    sleep(2)
+    wait = WebDriverWait(context.driver, 10)
+    wait.until(EC.element_to_be_clickable(SIDE_NAV_ADD_TO_CART_BTN)).click()
+
 
 @then('Verify search results are shown for {expected_product}')
 def verify_search_result_shown(context, expected_product):
