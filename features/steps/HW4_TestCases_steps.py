@@ -1,6 +1,9 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
 from time import sleep
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 ADD_TO_CART_BTN = (By.CSS_SELECTOR, "[id*='addToCartButton']")
 SIDE_NAV_ADD_TO_CART_BTN = (By.CSS_SELECTOR, "[data-test='content-wrapper'] [id*='addToCartButton']")
@@ -15,7 +18,10 @@ STORYCARDS = (By.CSS_SELECTOR, "[data-test='@web/SlingshotComponents/common/Stor
 @given('Open Target Circle page')
 def open_target_circle(context):
     context.driver.get('https://www.target.com/circle')
-    sleep(3)
+
+    wait = WebDriverWait(context.driver, 10)
+    wait.until(EC.presence_of_all_elements_located(STORYCARDS))
+
 
 @then('Verify there are 2 storycards under Unlock added value')
 def verify_storycards(context):

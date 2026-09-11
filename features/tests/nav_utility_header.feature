@@ -1,6 +1,5 @@
-# Created by sabriamanay at 9/10/26
-Feature: Tests for Header Links
+Feature: Test Scenario for page header verification
 
-  Scenario: Navigation Utility Header is shown
+  Scenario: User can navigate to the page header
     Given Open main target page
     Then Verify Navigation Utility Header is shown
